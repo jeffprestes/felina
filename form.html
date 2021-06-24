@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="estilo-form.css" />
+    <title>Meu formulário</title>
+  </head>
+  <body>
+    <header>
+      <h1>Meu primeiro formulário</h1>
+    </header>
+    <section>
+      <form action="#" target="_self" method="POST" name="frmImovel" id="frmImovel">
+        <label for="paramLocator">Endereço Ethereum do locador do imóvel: </label>
+        <input type="text" name="paramLocator" id="paramLocator" size="45" maxlength="42" required autofocus />
+        <br />
+        <label for="paramRenter">Endereço Ethereum do locatário do imóvel: </label>
+        <input type="text" name="paramRenter" id="paramRenter" size="45" maxlength="42" required />
+        <br />
+        <label for="paramAddressHome">Endereço físico do imóvel: </label>
+        <input type="text" name="paramAddressHome" id="paramAddressHome" size="100" required placeholder="(informe a rua com o CEP do imóvel)" />
+        <br />
+        <label for="paramRentalValue">Valor do aluguel: </label>
+        <input type="number" name="paramRentalValue" id="paramRentalValue" size="10" min="1" max="99999" required />
+        <br />
+        <input type="submit" value="Registrar no Smart Contract" onclick="obterDadosForm();" />
+      </form>
+    </section>
+    <hr />
+    <section>
+      <div>
+        <h1>Dados do contrato de locação</h1>
+      </div>
+      <div>
+        Informe o numero do contrato:
+        <input type="number" name="contractNumber" id="contractNumber" size="10" min="1" max="99999" />
+        <button>Buscar Dados</button>
+      </div>
+      <br />
+      <div>Endereço Ethereum do locador do imóvel: <span id="locator"></span></div>
+      <div>Endereço Ethereum do locatário do imóvel: <span id="renter"></span></div>
+      <div>Endereço físico do imóvel: <span id="addressHome"></span></div>
+      <div>Valor do aluguel: <span id="rentalValue"></span></div>
+    </section>
+    <script>
+      function obterDadosForm() {
+        alert(document.frmImovel.paramLocator.value + " " + document.frmImovel.paramRenter.value);
+        //event.preventDefault();
+      }
+    </script>
+  </body>
+</html>
