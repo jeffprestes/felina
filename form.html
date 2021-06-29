@@ -56,14 +56,19 @@
         alert(document.frmImovel.paramLocator.value + " " + document.frmImovel.paramRenter.value);
         //event.preventDefault();
       }
-      function getRentalContractData() {
+      async function getRentalContractData() {
         let contractNumberField = document.getElementById("contractNumber");
         const userInput = contractNumberField.value * 1;
         alert("valorInformadoPeloUsuario: " + userInput);
+        const rentalData = await sc.rentals(0);
+        alert(rentalData);
       }
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
+      //sc = smart contract
+      const sc = new ethers.Contract(contractAddress, ABI, provider);
+      const scWithSigner = sc.connect(signer);
     </script>
   </body>
 </html>
