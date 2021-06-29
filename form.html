@@ -60,7 +60,7 @@
         let contractNumberField = document.getElementById("contractNumber");
         const userInput = contractNumberField.value * 1;
         alert("valorInformadoPeloUsuario: " + userInput);
-        const rentalData = await sc.rentals(0);
+        const rentalData = await smartContract.rentals(0);
         alert(rentalData);
       }
 
@@ -69,7 +69,7 @@
         const signer = provider.getSigner();
         //sc = smart contract
         smartContract = new ethers.Contract(contractAddress, ABI, provider);
-        smartContractWithSigner = sc.connect(signer);
+        smartContractWithSigner = smartContract.connect(signer);
       } catch (err) {
         console.error(err);
       }
