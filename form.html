@@ -56,19 +56,25 @@
         alert(document.frmImovel.paramLocator.value + " " + document.frmImovel.paramRenter.value);
         //event.preventDefault();
       }
+
       async function getRentalContractData() {
         let contractNumberField = document.getElementById("contractNumber");
         const userInput = contractNumberField.value * 1;
         alert("valorInformadoPeloUsuario: " + userInput);
-        const arrayRentalData = await smartContract.rentals(0);
-        console.log(arrayRentalData);
-        //Modo mais verboso
-        let showLocator = document.getElementById("locator");
-        showLocator.innerText = arrayRentalData[0];
-        //Modo sintetico onde se concatena um comando junto a outro na mesma linha
-        document.getElementById("renter").innerText = arrayRentalData[1];
-        document.getElementById("addressHome").innerText = arrayRentalData[2];
-        document.getElementById("rentalValue").innerText = arrayRentalData[3];
+        try {
+          const arrayRentalData = await smartContract.rentals(userInput);
+          console.log(arrayRentalData);
+          //Modo mais verboso
+          let showLocator = document.getElementById("locator");
+          showLocator.innerText = arrayRentalData[0];
+          //Modo sintetico onde se concatena um comando junto a outro na mesma linha
+          document.getElementById("renter").innerText = arrayRentalData[1];
+          document.getElementById("addressHome").innerText = arrayRentalData[2];
+          document.getElementById("rentalValue").innerText = arrayRentalData[3];
+        } catch (err) {
+          console.error(err);
+          alert("Houve um erro ao buscar o contrato de numero: " + userInput);
+        }
       }
 
       try {
