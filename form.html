@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="estilo-form.css" />
     <title>Meu formulário</title>
   </head>
-  <body onload="autoLoadRentalContractData()">
+  <body onload="autoLoadOwner()">
     <header>
       <h1>Meu primeiro formulário</h1>
     </header>
@@ -32,6 +32,9 @@
     <section>
       <div>
         <h1>Dados do contrato de locação</h1>
+      </div>
+      <div>
+        <h2>Responsável técnico: <span id="spanOwner"></span></h2>
       </div>
       <div>
         Informe o numero do contrato:
@@ -82,25 +85,14 @@
         }
       }
 
-      async function autoLoadRentalContractData() {
+      async function autoLoadOwner() {
         try {
-          const arrayRentalData = await smartContract.rentals(0);
-          console.log(arrayRentalData);
-          //Modo mais verboso
-          let showLocator = document.getElementById("locator");
-          showLocator.innerText = arrayRentalData[0];
-          //Modo sintetico onde se concatena um comando junto a outro na mesma linha
-          document.getElementById("renter").innerText = arrayRentalData[1];
-          document.getElementById("addressHome").innerText = arrayRentalData[2];
-          document.getElementById("rentalValue").innerText = arrayRentalData[3];
+          const contractOwner = await smartContract.owner();
+          console.log(contractOwner);
+          document.getElementById("spanOwner").innerText = contractOwner;
         } catch (err) {
           console.error(err);
-          document.getElementById("locator").innerText = "";
-          document.getElementById("renter").innerText = "";
-          document.getElementById("addressHome").innerText = "";
-          document.getElementById("rentalValue").innerText = "";
-          contractNumberField.value = 0;
-          alert("Houve um erro ao buscar o contrato de numero: " + userInput);
+          alert("Houve um erro ao buscar o proprietário do contrato");
         }
       }
 
