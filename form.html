@@ -68,8 +68,8 @@
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
         //sc = smart contract
-        const sc = new ethers.Contract(contractAddress, ABI, provider);
-        const scWithSigner = sc.connect(signer);
+        smartContract = new ethers.Contract(contractAddress, ABI, provider);
+        smartContractWithSigner = sc.connect(signer);
       } catch (err) {
         console.error(err);
       }

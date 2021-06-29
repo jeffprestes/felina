@@ -1,4 +1,6 @@
 const contractAddress = "0x3Dd7335Ee100Dc8B4f51531Cc45228A18BFd7347";
+var smartContract;
+var smartContractWithSigner;
 const ABI = [
 	{
 		"inputs": [
