@@ -25,7 +25,7 @@
         <label for="paramRentalValue">Valor do aluguel: </label>
         <input type="number" name="paramRentalValue" id="paramRentalValue" size="10" min="1" max="99999" required />
         <br />
-        <input type="submit" value="Registrar no Smart Contract" onclick="obterDadosForm();" />
+        <input type="submit" value="Registrar no Smart Contract" onclick="getFormData();" />
       </form>
     </section>
     <hr />
@@ -36,7 +36,7 @@
       <div>
         Informe o numero do contrato:
         <input type="number" name="contractNumber" id="contractNumber" size="10" min="1" max="99999" />
-        <button>Buscar Dados</button>
+        <button onclick="getRentalContractData()">Buscar Dados</button>
       </div>
       <br />
       <div>Endereço Ethereum do locador do imóvel: <span id="locator"></span></div>
@@ -44,11 +44,26 @@
       <div>Endereço físico do imóvel: <span id="addressHome"></span></div>
       <div>Valor do aluguel: <span id="rentalValue"></span></div>
     </section>
+    <script
+      type="text/javascript"
+      integrity="sha384-dq8L5gpIcUoGAeHh/6setfxuuDI0ngshPvCvksSAcQMMWCr5cVFAaijT//nxVyjb"
+      crossorigin="anonymous"
+      src="https://cdn-cors.ethers.io/lib/ethers-5.4.0.umd.min.js"
+    ></script>
+    <script src="dado-contrato-no-ethereum.js"></script>
     <script>
-      function obterDadosForm() {
+      function getFormData() {
         alert(document.frmImovel.paramLocator.value + " " + document.frmImovel.paramRenter.value);
         //event.preventDefault();
       }
+      function getRentalContractData() {
+        let contractNumberField = document.getElementById("contractNumber");
+        const userInput = contractNumberField.value * 1;
+        alert("valorInformadoPeloUsuario: " + userInput);
+      }
+
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
     </script>
   </body>
 </html>
