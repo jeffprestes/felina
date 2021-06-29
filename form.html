@@ -62,14 +62,13 @@
         alert("valorInformadoPeloUsuario: " + userInput);
         const arrayRentalData = await smartContract.rentals(0);
         console.log(arrayRentalData);
-        alert(arrayRentalData[0]);
         //Modo mais verboso
         let showLocator = document.getElementById("locator");
         showLocator.innerText = arrayRentalData[0];
         //Modo sintetico onde se concatena um comando junto a outro na mesma linha
-        document.getElementById("renter").innerText = rentalData[1];
-        document.getElementById("addressHome").innerText = rentalData[2];
-        document.getElementById("rentalValue").innerText = rentalData[3];
+        document.getElementById("renter").innerText = arrayRentalData[1];
+        document.getElementById("addressHome").innerText = arrayRentalData[2];
+        document.getElementById("rentalValue").innerText = arrayRentalData[3];
       }
 
       try {
