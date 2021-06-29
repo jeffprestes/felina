@@ -73,6 +73,11 @@
           document.getElementById("rentalValue").innerText = arrayRentalData[3];
         } catch (err) {
           console.error(err);
+          document.getElementById("locator").innerText = "";
+          document.getElementById("renter").innerText = "";
+          document.getElementById("addressHome").innerText = "";
+          document.getElementById("rentalValue").innerText = "";
+          contractNumberField.value = 0;
           alert("Houve um erro ao buscar o contrato de numero: " + userInput);
         }
       }
