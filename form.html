@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="estilo-form.css" />
     <title>Meu formulário</title>
   </head>
-  <body>
+  <body onload="autoLoadRentalContractData()">
     <header>
       <h1>Meu primeiro formulário</h1>
     </header>
@@ -63,6 +63,28 @@
         alert("valorInformadoPeloUsuario: " + userInput);
         try {
           const arrayRentalData = await smartContract.rentals(userInput);
+          console.log(arrayRentalData);
+          //Modo mais verboso
+          let showLocator = document.getElementById("locator");
+          showLocator.innerText = arrayRentalData[0];
+          //Modo sintetico onde se concatena um comando junto a outro na mesma linha
+          document.getElementById("renter").innerText = arrayRentalData[1];
+          document.getElementById("addressHome").innerText = arrayRentalData[2];
+          document.getElementById("rentalValue").innerText = arrayRentalData[3];
+        } catch (err) {
+          console.error(err);
+          document.getElementById("locator").innerText = "";
+          document.getElementById("renter").innerText = "";
+          document.getElementById("addressHome").innerText = "";
+          document.getElementById("rentalValue").innerText = "";
+          contractNumberField.value = 0;
+          alert("Houve um erro ao buscar o contrato de numero: " + userInput);
+        }
+      }
+
+      async function autoLoadRentalContractData() {
+        try {
+          const arrayRentalData = await smartContract.rentals(0);
           console.log(arrayRentalData);
           //Modo mais verboso
           let showLocator = document.getElementById("locator");
