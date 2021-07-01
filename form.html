@@ -12,7 +12,7 @@
       <h1>Meu primeiro formulário</h1>
     </header>
     <section>
-      <form action="#" target="_self" method="POST" name="frmImovel" id="frmImovel">
+      <form action="#" method="POST" name="frmImovel" id="frmImovel">
         <label for="paramLocator">Endereço Ethereum do locador do imóvel: </label>
         <input type="text" name="paramLocator" id="paramLocator" size="45" maxlength="42" required autofocus />
         <br />
@@ -25,7 +25,7 @@
         <label for="paramRentalValue">Valor do aluguel: </label>
         <input type="number" name="paramRentalValue" id="paramRentalValue" size="10" min="1" max="99999" required />
         <br />
-        <input type="submit" value="Registrar no Smart Contract" onclick="saveFormData();" />
+        <input type="submit" value="Registrar no Smart Contract" onclick="event.preventDefault(); saveFormData();" />
       </form>
     </section>
     <hr />
