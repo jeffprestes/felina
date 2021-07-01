@@ -45,10 +45,14 @@ async function saveFormData() {
       document.frmImovel.paramRentalValue.value
     );
     console.log("transacao enviada ao metamask. pendente...", tx);
-    alert("Transação enviada... aguarde a confirmação da Blockcnain...");
+    alert("Transação enviada... " + tx.hash + " aguarde a confirmação da Blockcnain...");
     txReceipt = await tx.wait();
     console.log("transacao processada...", txReceipt);
-    alert("Transação processada. Registro salvo na Blockchain");
+    if (txReceipt.status == 1) {
+      alert("Transação processada: " + tx.hash + "  - Registro salvo na Blockchain. Status: " + txReceipt.status);
+    } else {
+      alert("Transação processada: " + tx.hash + "  - Mas houve um erro na blockchain. Veja pelo etherscan");
+    }
   } catch (err) {
     console.error(err);
     alert("Houve um erro ao salvar o registro do contrato de aluguel");
