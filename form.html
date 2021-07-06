@@ -57,17 +57,26 @@
     <script src="funcoes-contrato-ethereum.js"></script>
     <script>
       console.log("Tentando se conectar ao Ethereum via Metamask...");
-      try {
-        const connectionProvider = new ethers.providers.Web3Provider(window.ethereum.enable());
-        const signer = connectionProvider.getSigner();
-        //sc = smart contract
-        smartContract = new ethers.Contract(contractAddress, ABI, connectionProvider);
-        smartContractWithSigner = smartContract.connect(signer);
-        console.log("Conectado ao Smart Contract no Ethereum via Metamask.");
-      } catch (err) {
-        console.log("Erro ao conectar ao Ethereum/Smart Contract...");
-        console.error(err);
+      //A funcao abaixo inicia a conexao ao Ethereum
+      async function init() {
+        try {
+          if (window.ethereum == false) {
+            await ethereum.enable();
+          }
+          const connectionProvider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = connectionProvider.getSigner();
+          //sc = smart contract
+          smartContract = new ethers.Contract(contractAddress, ABI, connectionProvider);
+          smartContractWithSigner = smartContract.connect(signer);
+          console.log("Conectado ao Smart Contract no Ethereum via Metamask.");
+        } catch (err) {
+          console.log("Erro ao conectar ao Ethereum/Smart Contract...");
+          console.error(err);
+        }
       }
+
+      //Chama a funcao que inicializa a conexao
+      init();
     </script>
   </body>
 </html>
