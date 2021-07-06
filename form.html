@@ -58,7 +58,7 @@
     <script>
       console.log("Tentando se conectar ao Ethereum via Metamask...");
       try {
-        const connectionProvider = new ethers.providers.Web3Provider(window.ethereum);
+        const connectionProvider = new ethers.providers.Web3Provider(window.ethereum.enable());
         const signer = connectionProvider.getSigner();
         //sc = smart contract
         smartContract = new ethers.Contract(contractAddress, ABI, connectionProvider);
